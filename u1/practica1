@@ -1,0 +1,176 @@
+1)
+
+Consideramos que los datos son valores que dependiendo del contexto pueden 
+representar cierta información, por otro lado, la información es la 
+interpretación de ciertos hechos.
+Por ejemplo, un número puede representar una 
+edad, o un identificador, etc.
+
+Un ejemplo donde proteger el acceso a los datos no necesariamente protege el 
+acceso a la información podría ser un archivo con la edad de un empleado oculta 
+el dato de su edad actual. Sólo el día de su cumpleaños, ese archivo se
+actualiza, por lo que se filtra la información del día en que cumple años al 
+acceder a la fecha de modificación.
+
+Un ejemplo donde obtener acceso a datos no necesariamente nos da acceso a 
+información podría ser obtener una tabla con contraseñas hasheadas. Como fueron 
+encriptadas sin forma de desencriptarlas, estos datos son sólo números a los que 
+no les podemos dar sentido, por lo que no se filtra la información de los
+usuarios.
+
+2)
+
+1. Leyendo sólo la metadata de los mails, para identificar si son personales, 
+podríamos contar el número de mails hasta cierto límite de alarma, o calcular 
+el número de mails por hora, etc.
+
+2. Creemos que no lo hacen para evitar el descontento del empleado. La mayoría 
+de empresas no requieren un nivel de confidencialidad tan alto como para 
+prohibir el uso del mail personal.
+
+3)
+
+Creemos que las políticas de seguridad y modelos para hacerlas cumplir 
+pueden imponer barreras comerciales al dificultar el proceso económico que 
+la empresa realiza. Por ejemplo, encriptar los datos y luego desencriptarlos 
+para su uso requiere más tiempo de cómputo que si los usaramos sin encriptar.
+
+4)
+
+La diferencia entre la amenaza interna y externa creemos que es la facilidad 
+de acceso a los sistemas de la empresa, el conocimiento sobre el funcionamiento 
+interno, acceso a las personas con mayores permisos de acceso, etc.
+El atacante externo tiene que encontrar vulnerabilidades directamente en el 
+sistema de seguridad.
+
+Estas diferencias puede que hayan cambiado a medida que la tecnología fue 
+progresando. Por ejemplo, originalmente el atacante hubiera necesitado acceso 
+a la red local de la empresa. Luego con la aparición de los e-mail, el empleado
+puede revelar información a través de este medio. Incluso hoy en día se revela 
+información a la IA, la cual es monitoreada y utilizada por quienes proveen el 
+servicio.
+
+5)
+
+
+6)
+
+1. confidencialidad
+2. integridad, disponibilidad
+3. integridad
+4. integridad
+5. disponibilidad
+6. confidencialidad
+
+8)
+
+# Problema de security y de safety.
+
+La especificación no considera que en una de las entradas del programa 
+se puede dar un buffer overflow, cambiando el valor de retorno en el stack y 
+logrando ejecución arbitraria, pudiendo violar confidencialidad, integridad, o 
+disponibilidad.
+
+# Problema de security, NO de safety.
+
+Un programa que se comunique de manera no encriptada (por ejemplo, http) puede 
+encontrarse con problemas de confidencialidad, aunque el programa funciona 
+como se especificó.
+
+# Problema de safety, NO de security.
+
+Un programa que en vez de sumar 1, como dice la especificación, resta 1, no 
+cumple con safety pero no tiene problemas de seguridad.
+
+9) 
+
+# Ocultamiento de información no agrega seguridad a un sistema.
+
+Cualquier programa al que se tiene acceso (un binario en el sistema) se puede 
+decompilar y analizar, por lo que no se logran ocultar los problemas aunque 
+no se tenga acceso al código fuente.
+
+# Ocultamiento de información agrega seguridad.
+
+Si el programa provee un servicio a través de internet, no podemos acceder 
+a el mismo más allá de enviar entradas y observar sus salidas, por lo que 
+agrega complejidad para el atacante.
+
+10)
+
+
+                      Recetas
+                    /        |
+                   /         |
+                  /          |
+        Registros          Enfermeras 
+             \              /
+              \            /
+                  Medicos  
+                  
+
+11)
+
+...
+
+20)
+
+La ventaja que tiene el enfoque actual es que los permisos que se le otorgan 
+al programa son más acotados, y por lo tanto es menos susceptible a problemas 
+de seguridad. En vez de actuar como el usuario root y tener acceso a todo el 
+sistema, sólo accede a lo que necesita para funcionar.
+
+21)
+
+# Prog 1
+
+No hay problemas. Las entradas vienen de un usuario con un nivel bajo, pero 
+las salidas sólo las ve un usuario de nivel alto, por lo que no se filtra 
+el secreto de "magic".
+
+# Prog 2
+
+Hay un flujo indebido de información, ya que un usuario de bajo nivel se 
+entera que existe un usuario de alto nivel y que este está escribiendo algo.
+
+# Prog 3
+
+En este caso, se filtra la información de que existe un usuario de alto nivel, 
+y además se entera de qué valor ingresó el usuario de alto nivel si ese valor 
+es mayor o igual a 101. Si el valor es menor o igual a 100, nada más se sabe 
+ese dato.
+
+# Prog 4
+
+Se puede filtrar la contraseña del usuario root, ya que se escribe un mensaje 
+distinto en el nivel bajo dependiendo de si es correcta o no.
+
+# Prog 5
+
+Igual que en el caso anterior, se puede filtrar el usuario y contraseña de 
+la base de datos de nivel alto.
+
+22)
+
+Suponiendo que 'x = readX()' es lo mismo que 'readX(&x)'
+
+# Prog 1
+
+1. Inicia el proceso con nivel L.
+2. Leemos la entrada del usuario en 'magic'
+3. Si esa entrada es igual al secreto: Se escribe al ambiente de alto nivel.
+El proceso no va a poder leer ese resultado.
+4. Si no lo es: Se escribe al ambiente de alto nivel.
+Tampoco va a poder leerlo.
+
+# Prog 2
+
+
+# Prog 3
+
+
+# Prog 4
+
+
+# Prog 5
+
